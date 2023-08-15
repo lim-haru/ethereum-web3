@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/send.css' %}">
+
+<div class="send-activity">
+  <div class="send-container1">
+    <span class="send-text">
+      <span>Send</span>
+      <br />
+    </span>
+  </div>
+  <div class="send-activity1">
+    <form class="send-form">
+      <div class="send-container2">
+        <span class="send-text03">From</span>
+        <span id="address" class="send-text04"></span>
+      </div>
+
+      <div class="send-container3">
+        <span class="send-text05">To</span>
+        <input type="text" required="" placeholder="0x00000000000000000000000000000000000000000" class="send-textinput input"/>
+      </div>
+
+      <div class="send-container4">
+        <div class="send-container5">
+          <img alt="Stroke33239" src="{% static 'icons/mint.svg' %}" class="send-stroke3"/>
+          <span id="token-symbol" class="send-text06">-</span>
+          <img alt="Stroke33239" src="{% static 'icons/vector%202.svg' %}" class="send-stroke31"/>
+        </div>
+        <input id="token-balance" type="number" required="" placeholder="0" class="send-textinput1 input"/>
+      </div>
+
+      <div id="send-button" class="send-send-button">
+        <div class="send-group9">
+          <img alt="Stroke33239" src="{% static 'icons/icons8-aereo-di-carta-100%20(1)-200h.png' %}" class="send-stroke32"/>
+          <span class="send-text09">Send</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/mint.css' %}">
+
+<div class="mint-activity">
+  <div class="mint-container1">
+    <span class="mint-text46">
+      <span>Mint</span>
+      <br />
+    </span>
+  </div>
+  <div class="mint-activity1">
+    <div class="mint-container2">
+      <div class="mint-container3">
+        <span class="mint-text49">Mint Left</span>
+        <span id="token-mint-left" class="mint-text52">0</span>
+      </div>
+
+      <div class="mint-container3">
+        <span class="mint-text49">Mint left by Address</span>
+        <span id="token-mint-left-address" class="mint-text52">0</span>
+      </div>
+
+      <div class="mint-container5">
+        <span class="mint-text49">Token Amount</span>
+        <span id="token-balance" class="mint-text52">0</span>
+      </div>
+
+    </div>
+    <form class="mint-form">
+      <div class="mint-container6">
+        <span class="mint-text57">Recipient Address</span>
+        <span id="address" class="mint-text58">-</span>
+      </div>
+      <div class="mint-container7">
+        <div class="mint-container8">
+          <img alt="Stroke33239" src="{% static 'icons/mint.svg' %}" class="mint-stroke31"/>
+          <span id="token-symbol"class="mint-text59">-</span>
+          <img alt="Stroke33239" src="{% static 'icons/vector%202.svg' %}" class="mint-stroke32"/>
+        </div>
+        <span id="token-mint-amount" class="mint-text62">0</span>
+      </div>
+      <div id="mint-button" class="mint-send-button">
+        <div class="mint-group9">
+          <span class="mint-text63">Mint Token</span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %} 

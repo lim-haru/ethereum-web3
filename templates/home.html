@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-assets">
+  <div class="home-container01">
+    <span class="home-text">
+      <span>CRYPTOCURRENCY</span>
+      <br />
+    </span>
+    <span class="home-text003">More Assets</span>
+  </div>
+  <div class="home-currencies">
+    <div class="home-currency">
+      <img alt="Rectangle64034" src="{% static 'icons/rectangle64034-f8zj-400w.png' %}" class="home-rectangle6"/>
+      <div class="home-container02">
+        <img alt="image24065" src="{% static 'icons/bitcoinplus.svg' %}" class="home-image2"/>
+        <span class="home-text005">Bitcoin</span>
+        <span class="home-text006"><span>{{ btc.1|floatformat:2 }}%</span></span>
+      </div>
+      <span class="home-text008">{{ btc.0|floatformat:2 }}$</span>
+    </div>
+
+    <div class="home-currency">
+      <img alt="Rectangle64034" src="{% static 'icons/rectangle64034-f8zj-400w.png' %}" class="home-rectangle6"/>
+      <div class="home-container02">
+        <img alt="image24065" src="{% static 'icons/ethereum.svg' %}" class="home-image2"/>
+        <span class="home-text005">Ethereum</span>
+        <span class="home-text006">{{ eth.1|floatformat:2 }}%</span>
+      </div>
+      <span class="home-text008">{{ eth.0|floatformat:2 }}$</span>
+    </div>
+
+    <div class="home-currency">
+      <img alt="Rectangle64034" src="{% static 'icons/rectangle64034-f8zj-400w.png' %}" class="home-rectangle6"/>
+      <div class="home-container02">
+        <img alt="image24065" src="{% static 'icons/binance.svg' %}" class="home-image2"/>
+        <span class="home-text005">Bnb</span>
+        <span class="home-text006">{{ bnb.1|floatformat:2 }}%</span>
+      </div>
+      <span class="home-text008">{{ bnb.0|floatformat:2 }}$</span>
+    </div>
+
+    <div class="home-currency">
+      <img alt="Rectangle64034" src="{% static 'icons/rectangle64034-f8zj-400w.png' %}" class="home-rectangle6"/>
+      <div class="home-container02">
+        <img alt="image24065" src="{% static 'icons/solana.svg' %}" class="home-image2">
+        <span class="home-text005">Solana</span>
+        <span class="home-text006">{{ sol.1|floatformat:2 }}%</span>
+      </div>
+      <span class="home-text008">{{ sol.0|floatformat:2 }}$</span>
+    </div>
+
+    <div class="home-new-currency">
+      <div class="home-group2">
+        <img alt="Path3117" src="{% static 'icons/plus.svg' %}" class="home-path"/>
+        <span class="home-text024"><span>New Asset</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-activity">
+  <div class="home-container06">
+    <span class="home-text026"><span>ACTIVITY</span></span>
+    <span class="home-text003">
+      <a href="{% url 'events' %}">More Activity</a>
+    </span>
+  </div>
+  <div class="home-activity1">
+    <div class="home-container07">
+      <div class="home-table-head">
+        <span class="home-text030">Tipo</span>
+        <span class="home-text031">Amount</span>
+        <span class="home-text032">From</span>
+        <span class="home-text033">To</span>
+        <span class="home-text034">Date</span>
+      </div>
+      <div class="home-container08"></div>
+      <div class="home-transactions-list">
+        {% if events %}
+          {% for event in events %}
+            <div class="home-transaction1">
+              <span class="home-text035">{{ event.event }}</span>
+              <span class="home-text036">{{ event.from }}</span>
+              <span class="home-text037">{{ event.to }}</span>
+              <span class="home-text038">{{ event.value }}</span>
+              <span class="home-text039">{{ event.timestamp|date:"d/m/y - H:i" }}</span>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="home-container40">
+            <span class="home-text040">No data</span>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-info-token">
+  <span class="home-text054">TOKEN INFO</span>
+  <div class="home-info-token1">
+    <div class="home-container09">
+      <div class="home-container10">
+        <span class="home-text055">{{ txs }}</span>
+        <span class="home-text058">Transaction</span>
+      </div>
+
+      <div class="home-container11"></div>
+      <div class="home-container12">
+        <span id="token-mint-left" class="home-text061">0</span>
+        <span class="home-text064">Mint left</span>
+      </div>
+
+      <div class="home-container13"></div>
+      <div class="home-container14">
+        <span id="token-totalsupply" class="home-text065">0</span>
+        <span class="home-text068">Supply</span>
+      </div>
+
+      <div class="home-container15"></div>
+      <div class="home-container16">
+        <span class="home-text071">
+          {% if events %}
+            {% with last_event=events.0 %}
+              <p>{{ last_event.timestamp|date:"d/m/y" }}</p>
+            {% endwith %}
+          {% else %}
+            <p>No data</p>
+          {% endif %}
+        </span>
+        <span class="home-text074">Last event</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="home-price-table">
+  <div class="home-container17">
+    <span class="home-text077"><span>Cryptocoin</span></span>
+    <span class="home-text079">Amount</span>
+    <span class="home-text080">Change</span>
+    <span class="home-text081"><span>Price</span></span>
+  </div>
+  <div class="home-container18">
+    <div class="home-asset">
+      <div class="home-group6">
+        <div class="home-group3">
+          <img alt="image24065" src="{% static 'icons/ethereum.svg' %}" class="home-image24"/>
+        </div>
+        <span class="home-text083">Ethereum</span>
+      </div>
+      <span id="balance" class="home-text086">-</span>
+      <span class="home-text087"><span>{{ eth.1|floatformat:2 }}%</span></span>
+      <span class="home-text089">{{ eth.0|floatformat:2 }}$</span>
+    </div>
+    <div class="home-asset">
+      <div class="home-group6">
+        <div class="home-group3">
+          <img alt="image24065" src="{% static 'icons/mint.svg' %}" class="home-image24"/>
+        </div>
+        <span id="token-name" class="home-text083">-</span>
+      </div>
+      <span id="token-balance" class="home-text086">-</span>
+      <span class="home-text087">-</span>
+      <span class="home-text089">-</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/events.css' %}">
+
+<div class="events-activity">
+    <div class="events-container1">
+      <span class="events-text">Event History</span>
+    </div>
+    <div class="events-activity1">
+      <div class="events-container2">
+        <div class="events-table-head">
+          <span class="events-text01">Tipo</span>
+          <span class="events-text02">From</span>
+          <span class="events-text03">To</span>
+          <span class="events-text04">Amount</span>
+          <span class="events-text05">Date</span>
+        </div>
+        <div class="events-container3"></div>
+        <div class="events-transactions-list">
+          {% for event in page_obj %}
+          <div class="events-transaction1">
+            <span class="events-text06">{{ event.event }}</span>
+            <span class="events-text07">{{ event.from }}</span>
+            <span class="events-text08">{{ event.to }}</span>
+            <span class="events-text09">{{ event.value }}</span>
+            <span class="events-text10">{{ event.timestamp|date:"d/m/y - H:i" }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="events-container4">
+      {% if page_obj.has_previous %}
+        <div onclick="window.location.href='?page={{ page_obj.previous_page_number }}'">
+          <img alt="image24065" src="{% static 'icons/arrow-left.svg' %}" class="events-image2"/>
+        </div>
+      {% else %}
+        <img alt="image24065" src="{% static 'icons/arrow-left-30%.svg' %}" class="events-image2"/>
+      {% endif %}
+
+      <div class="events-image21">
+        <span class="events-text24">{{ page_obj.number }}</span>
+      </div>
+
+      {% if page_obj.has_next %}
+        <div onclick="window.location.href='?page={{ page_obj.next_page_number }}'">
+          <img alt="image24065" src="{% static 'icons/arrow-right.svg' %}" class="events-image22"/>         
+        </div>
+      {% else %}
+        <img alt="image24065" src="{% static 'icons/arrow-right-30%.svg' %}" class="events-image22"/>
+      {% endif %}
+    </div>
+</div>
+{% endblock %} 
