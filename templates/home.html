@@ -16,7 +16,9 @@
       <div class="home-container02">
         <img alt="image24065" src="{% static 'icons/bitcoinplus.svg' %}" class="home-image2"/>
         <span class="home-text005">Bitcoin</span>
-        <span class="home-text006"><span>{{ btc.1|floatformat:2 }}%</span></span>
+        <!-- <span class="home-text006">{{ btc.1|floatformat:2 }}%</span> -->
+        <span id="coloredText" class="home-text006">2,63%</span>
+
       </div>
       <span class="home-text008">{{ btc.0|floatformat:2 }}$</span>
     </div>
@@ -54,14 +56,14 @@
     <div class="home-new-currency">
       <div class="home-group2">
         <img alt="Path3117" src="{% static 'icons/plus.svg' %}" class="home-path"/>
-        <span class="home-text024"><span>New Asset</span></span>
+        <span class="home-text024">New Asset</span>
       </div>
     </div>
   </div>
 </div>
 <div class="home-activity">
   <div class="home-container06">
-    <span class="home-text026"><span>ACTIVITY</span></span>
+    <span class="home-text026">ACTIVITY</span>
     <span class="home-text003">
       <a href="{% url 'events' %}">More Activity</a>
     </span>
@@ -136,10 +138,10 @@
 </div>
 <div class="home-price-table">
   <div class="home-container17">
-    <span class="home-text077"><span>Cryptocoin</span></span>
+    <span class="home-text077">Cryptocoin</span>
     <span class="home-text079">Amount</span>
     <span class="home-text080">Change</span>
-    <span class="home-text081"><span>Price</span></span>
+    <span class="home-text081">Price</span>
   </div>
   <div class="home-container18">
     <div class="home-asset">
@@ -150,7 +152,7 @@
         <span class="home-text083">Ethereum</span>
       </div>
       <span id="balance" class="home-text086">-</span>
-      <span class="home-text087"><span>{{ eth.1|floatformat:2 }}%</span></span>
+      <span class="home-text087">{{ eth.1|floatformat:2 }}%</span>
       <span class="home-text089">{{ eth.0|floatformat:2 }}$</span>
     </div>
     <div class="home-asset">
@@ -166,4 +168,22 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  // colors text based on positive or negative percentage
+  var elements = document.querySelectorAll('.home-text006');
+
+  elements.forEach(function(element) {
+      var text = element.textContent.trim();
+      var value = parseFloat(text);
+
+      // check if the number is negative
+      if (value < 0) {
+          element.classList.add('red');
+      } else {
+          element.classList.add('green');
+      }
+  });
+</script>
 {% endblock %}

@@ -33,7 +33,7 @@
 }
 .send-activity1 {
   width: 100%;
-  height: 392px;
+  height: 400px;
   display: flex;
   align-items: flex-start;
   flex-shrink: 1;
@@ -154,7 +154,7 @@
   border-width: 2px;
   padding-left: var(--dl-space-space-oneandhalfunits);
   border-radius: 12px;
-  margin-bottom: var(--dl-space-space-threeunits);
+  margin-bottom: var(--dl-space-space-halfunit);
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: row;
   justify-content: space-between;
@@ -206,6 +206,10 @@
 ::placeholder {
   color: #FFFFFFB3;
   font-size: 15px;
+}
+
+.send-fee {
+  align-self: flex-end;
 }
 
 .send-send-button {

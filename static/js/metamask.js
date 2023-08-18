@@ -3,7 +3,7 @@ var userAccount;
 var lastBalance;
 
 function startApp() {
-    const tokenContract = '0x346E6993E6Fa30826CFcabb509D95363475108cA';
+    const tokenContract = '0x8827B41602B676E97e176e7EC7d2Ccf8f6cA55D9';
     Token = new web3.eth.Contract(tokenABI, tokenContract);
 
     var accountInterval = setInterval(function() {
@@ -25,10 +25,14 @@ function startApp() {
             name();
             symbol();
             mintAmount();
+
+            feeRate()
+            blockFee()
         }
         // Check if your balance has changed
         checkAndUpdateBalance();
         checkAndUpdateBalanceToken(userAccount); 
+        getUnlockedTokens()
 
         // Check if the mint has been changed
         mintLeft();
@@ -121,7 +125,7 @@ async function totalSupply() {
 
 async function mint() {
     try {
-        const mintToken = await Token.methods.mintToken().send({ from: userAccount })
+        const mintToken = await Token.methods.mintToken().send({ from: userAccount });
     } catch (error) {
         console.error(error);
     }
@@ -169,6 +173,66 @@ async function mintAmount() {
     }
 }
 
+async function feeRate() {
+    try {
+        const feeRate = await Token.methods.feeRate().call();
+
+        // Check for the presence of the id in the html
+        const sfeeRate = document.getElementById("token-fee");
+        if (sfeeRate) {
+            sfeeRate.innerHTML = feeRate;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function blockFee() {
+    try {
+        const fee1Month = await Token.methods.fee1Month().call();
+        const fee3Months = await Token.methods.fee3Months().call();
+        const fee6Months = await Token.methods.fee6Months().call();
+
+        // Check for the presence of the id in the html
+        const sfee1Month = document.getElementById("token-fee-1month");
+        if (sfee1Month) {
+            sfee1Month.innerHTML = fee1Month;
+        }
+        const sfee3Months = document.getElementById("token-fee-3months");
+        if (sfee3Months) {
+            sfee3Months.innerHTML = fee3Months;
+        }
+        const sfee6Months = document.getElementById("token-fee-6months");
+        if (sfee6Months) {
+            sfee6Months.innerHTML = fee6Months;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function getUnlockedTokens() {
+    try {
+        const getUnlockedTokens = await Token.methods.getUnlockedTokens(userAccount).call();
+
+        // Check for the presence of the id in the html
+        const sUnlockedTokens = document.getElementById("token-unlocked-amount");
+        const sRewardsTokens = document.getElementById("token-rewards-amount");
+
+        if (sUnlockedTokens) {
+            const unlockedTokensFixed = Number(getUnlockedTokens[0]) / 10 ** 18;
+            sUnlockedTokens.innerHTML = unlockedTokensFixed.toFixed(2);
+        } 
+        if (sRewardsTokens) {
+            const rewardsTokensFixed = Number(getUnlockedTokens[1]) / 10 ** 18;
+            sRewardsTokens.innerHTML = rewardsTokensFixed.toFixed(2);
+        } 
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 async function transfer(to, amount) {
     try {
@@ -183,7 +247,25 @@ async function transfer(to, amount) {
       console.error("Error transferring token:", error);
       throw error;
     }
-  }
+}
+
+async function blockTokens(lockAmount, months) {
+    try {
+        const withdrawUnlockedTokens = await Token.methods.blockTokens(lockAmount, months).send({ from: userAccount });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function withdrawUnlockedTokens() {
+    try {
+        const withdrawUnlockedTokens = await Token.methods.withdrawUnlockedTokens().send({ from: userAccount });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
 
 
 // When the Connect Metamask button is pressed
@@ -240,6 +322,57 @@ if (mintButton) {
         // check mints left and mints left for accounts greater than 0
         if (document.getElementById('token-mint-left').innerHTML > 0 && document.getElementById('token-mint-left-address').innerHTML > 0 ) {
             mint();
+        }
+    });
+}
+
+
+// When the button is pressed it locks the tokens for 1 month                 
+const block1MonthButton = document.getElementById('block-1month-button');
+if (block1MonthButton) {
+    block1MonthButton.addEventListener("click", event => {
+        // amount of token to block
+        const tokenAmount = document.getElementById("token-balance").value;
+        // check inpute balance greater than 0
+        if (tokenAmount > 0) {
+            blockTokens(web3.utils.toWei(tokenAmount, 'ether'), 1);
+        }
+    });
+}
+
+// When the button is pressed it locks the tokens for 3 months
+const block3MonthsButton = document.getElementById('block-3months-button');
+if (block3MonthsButton) {
+    block3MonthsButton.addEventListener("click", event => {
+        // amount of token to block
+        const tokenAmount = document.getElementById("token-balance").value;
+        // check inpute balance greater than 0
+        if (tokenAmount > 0) {
+            blockTokens(web3.utils.toWei(tokenAmount, 'ether'), 3);
+        }
+    });
+}
+
+// When the button is pressed it locks the tokens for 6 months
+const block6MonthsButton = document.getElementById('block-6months-button');
+if (block6MonthsButton) {
+    block6MonthsButton.addEventListener("click", event => {
+        // amount of token to block
+        const tokenAmount = document.getElementById("token-balance").value;
+        // check inpute balance greater than 0
+        if (tokenAmount > 0) {
+            blockTokens(web3.utils.toWei(tokenAmount, 'ether'), 6);
+        }
+    });
+}
+
+// When the Withdraw Token button is pressed
+const withdrawButton = document.getElementById('withdraw-button');
+if (withdrawButton) {
+    withdrawButton.addEventListener("click", event => {
+        // check unlocked token and rewards greater than 0
+        if (document.getElementById('token-unlocked-amount').innerHTML > 0 || document.getElementById('token-rewards-amount').innerHTML > 0 ) {
+            withdrawUnlockedTokens();
         }
     });
 }

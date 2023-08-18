@@ -37,6 +37,9 @@ def send(request):
 def mint(request):
     return render(request, 'mint.html')
 
+def earn(request):
+    return render(request, 'earn.html')
+
 def event(request):
     # get all events
     events = get_events()

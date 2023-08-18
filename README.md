@@ -23,6 +23,12 @@ Ethereum Web3 rappresenta un  progetto che introduce una dapp. Attraverso la int
 </p>
 <br>
 
+- Nella sezione **Earn**, è possibile vincolare una quantità precisa dei tuoi token per un periodo di 1, 3, o 6 mesi. Inoltre, una volta che questi token sono stati sbloccati, hai la possibilità di prelevarli insieme alle ricompense accumulate durante il periodo di blocco.  
+<p align="center">
+    <img width="85%" src="./assets/earn.png">
+</p>
+<br>
+
 - Infine, nella pagina **Events**, puoi consultare l'elenco completo degli eventi correlati al tToken presenti sulla blockchain.  
 <p align="center">
     <img width="85%" src="./assets/events.png">

@@ -91,13 +91,14 @@
   position: absolute;
   font-size: 16px;
   font-style: Medium;
-  text-align: left;
+  text-align: left; 
   transition: 0.3s;
   font-family: DM Sans;
   font-weight: 500;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
+  align-items: center;
 }
 .home-text096:active {
   color: #342e5b;

@@ -130,7 +130,6 @@
   text-decoration: none;
 }
 .home-text006 {
-  color: rgba(62, 221, 135, 1);
   right: var(--dl-space-space-oneandhalfunits);
   bottom: 0px;
   height: auto;
@@ -868,4 +867,13 @@
   align-items: flex-start;
   flex-shrink: 1;
   flex-direction: row;
+}
+
+
+.red {
+  color: rgb(221, 62, 65, 1);
+}
+
+.green {
+  color: rgb(62, 221, 135, 1);
 }

@@ -9,7 +9,7 @@ load_dotenv()
 def get_events():
     w3 = Web3(Web3.HTTPProvider(os.environ.get('WEB3_PROVIDER')))
 
-    contract_address = "0x346E6993E6Fa30826CFcabb509D95363475108cA"
+    contract_address = "0x8827B41602B676E97e176e7EC7d2Ccf8f6cA55D9"
 
     # Load the ABI from the JavaScript file
     with open('static/js/tToken_abi.js', 'r') as abi_file:

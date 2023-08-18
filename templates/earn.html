@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/earn.css' %}">
+
+<div class="earn-earn">
+  <div class="earn-container01">
+    <span class="earn-text44">Earn</span>
+  </div>
+  <div class="earn-container02">
+
+
+    <div class="earn-lock">
+      <div class="earn-container03">
+        <span class="earn-text47">Lock</span>
+
+        <div class="earn-container04">
+          <div class="earn-container05">
+            <img alt="Stroke33239" src="{% static 'icons/mint.svg' %}" class="earn-stroke31"/>
+            <span class="earn-text50">tToken</span>
+            <img alt="Stroke33239" src="{% static 'icons/vector%202.svg' %}" class="earn-stroke32"/>
+          </div>
+          <input id="token-balance" type="text" required="" placeholder="0" class="earn-textinput input"/>
+        </div>
+
+        <div id="block-1month-button" class="earn-container06">
+          <span class="earn-text53">1 Month</span>
+          <span class="earn-text54"><span id="token-fee-1month">0</span>% APR</span>
+        </div>
+        <div id="block-2months-button" class="earn-container06">
+          <span class="earn-text53">3 Months</span>
+          <span class="earn-text54"><span id="token-fee-3months">0</span>% APR</span>
+        </div>
+        <div id="block-3months-button" class="earn-container06">
+          <span class="earn-text53">6 Months</span>
+          <span class="earn-text54"><span id="token-fee-6months">0</span>% APR</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="earn-withdraw">
+      <div class="earn-container03">
+        <span class="earn-text59">Withdraw </span>
+
+        <div class="earn-container10">
+          <div class="earn-container05">
+            <img alt="Stroke33239" src="{% static 'icons/mint.svg' %}" class="earn-stroke31"/>
+            <span class="earn-text50">tToken</span>
+            <img alt="Stroke33239" src="{% static 'icons/vector%202.svg' %}" class="earn-stroke32"/>
+          </div>
+        </div>
+
+        <div class="earn-container12">
+          <span class="earn-text65">Unlocked</span>
+          <span id="token-unlocked-amount" class="earn-text66">0</span>
+        </div>
+        <div class="earn-container13">
+          <span class="earn-text65">Rewards</span>
+          <span id="token-rewards-amount"class="earn-text66">0</span>
+        </div>
+
+        <div id="withdraw-button" class="earn-send-button">
+          <div class="earn-group9">
+            <span class="earn-text69">Withdraw Token</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
